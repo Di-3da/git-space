@@ -1,46 +1,7 @@
-import java.util.Arrays;
+package com.example.solution;
 
-class Solution4 {
-    public int maximumGap(int[] nums) {
-        int n = nums.length;
-        if (n < 2) {
-            return 0;
-        }
-
-        int maxVal = Arrays.stream(nums).max().getAsInt();
-        int minVal = Arrays.stream(nums).min().getAsInt();
-
-        if (maxVal == minVal) {
-            return 0;
-        }
-
-        int bucketSize = (maxVal - minVal) / (n - 1) + 1;
-        int[][] buckets = new int[n][2];
-        for (int i = 0; i < n; i++) {
-            int idx = (nums[i] - minVal) / bucketSize;
-            if (buckets[idx][0] == 0) {
-                buckets[idx][0] = nums[i];
-                buckets[idx][1] = nums[i];
-            } else {
-                buckets[idx][0] = Math.min(buckets[idx][0], nums[i]);
-                buckets[idx][1] = Math.max(buckets[idx][1], nums[i]);
-            }
-        }
-
-        int maxGap = 0;
-        int previousMax = minVal;
-
-        for (int i = 0; i < n; i++) {
-            if (buckets[i][0] == 0) continue;  // Empty bucket
-            maxGap = Math.max(maxGap, buckets[i][0] - previousMax);
-            previousMax = buckets[i][1];
-        }
-
-        return maxGap;
-    }
-}
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import org.testng.annotations.Test;
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * L学号_X_Test.java
@@ -90,8 +51,9 @@ public class L2022211832_4_Test {
     @Test
     public void testMaximumGapLargeArray() {
         int[] nums = {1, 1000000000, 500000000};
-        assertEquals(499999999, solution.maximumGap(nums));
+        assertEquals(500000000, solution.maximumGap(nums)); // 修改预期值为500000000
     }
+
 
     /**
      * 测试目的：验证逆序数组的情况
