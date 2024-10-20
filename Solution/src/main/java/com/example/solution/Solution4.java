@@ -46,3 +46,5 @@ public class Solution4 {
         return maxGap;
     }
 }
+
+//直接换了个算法
