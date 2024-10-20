@@ -65,3 +65,5 @@ public class L2022211832_4_Test {
         assertEquals(3, solution.maximumGap(nums));
     }
 }
+
+//很好的测试，使我内心旋转
